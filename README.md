@@ -5,4 +5,6 @@
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 
+<a href="https://imgur.com/QRJUi98"><img src="https://i.imgur.com/QRJUi98.png" title="source: imgur.com" /></a>
+
 Firelink is based on scikit-learn pipeline and adding the functionality to store the pipeline in `.yaml` or `.ember` file for production.

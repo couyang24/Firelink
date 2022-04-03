@@ -7,7 +7,7 @@ class Filter(Firstflame):
     def __init__(self, items=None, like=None, regex=None, axis=None):
         self.items = items
         self.like = like
-        self.regrex = regrex
+        self.regex = regex
         self.axis = axis
 
     def transform(self, X, y=None):

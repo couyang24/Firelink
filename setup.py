@@ -7,11 +7,9 @@ def _read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
-exec(open("firelink/_version.py").read())
-
 setup(
     name="firelink",
-    version=__version__,
+    version="0.1.0",
     author="Chengran (Owen) Ouyang",
     author_email="chengranouyang@gmail.com",
     description=(

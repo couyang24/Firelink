@@ -1,9 +1,13 @@
 black
+catboost
 flake8
 isort
+jupytext
+lightgbm
 matplotlib
 numpy
 pandas
 pre-commit
 pytest
 scikit-learn
+xgboost

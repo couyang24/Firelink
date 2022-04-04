@@ -1,0 +1,9 @@
+black
+flake8
+isort
+matplotlib
+numpy
+pandas
+pre-commit
+pytest
+scikit-learn

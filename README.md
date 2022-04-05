@@ -9,3 +9,13 @@
 ![image](https://i.imgur.com/QRJUi98.png)
 
 Firelink is based on scikit-learn pipeline and adding the functionality to store the pipeline in `.yaml` or `.ember` file for production.
+
+## Quickstart
+
+```
+pip install firelink
+```
+
+## Detailed Documentation
+
+For the detailed documentation, please go through this [portal](https://couyang24.github.io/Firelink/).

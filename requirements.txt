@@ -3,7 +3,6 @@ catboost
 flake8
 isort
 jupytext
-lightgbm
 matplotlib
 numpy
 pandas

@@ -27,6 +27,7 @@
 import catboost as cgb
 import firelink
 import lightgbm as lgb
+
 # +
 import matplotlib.pyplot as plt
 import numpy as np
@@ -41,9 +42,13 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.compose import ColumnTransformer
 from sklearn.datasets import load_breast_cancer
 from sklearn.decomposition import PCA
-from sklearn.ensemble import (AdaBoostClassifier, BaggingClassifier,
-                              GradientBoostingClassifier,
-                              RandomForestClassifier, VotingClassifier)
+from sklearn.ensemble import (
+    AdaBoostClassifier,
+    BaggingClassifier,
+    GradientBoostingClassifier,
+    RandomForestClassifier,
+    VotingClassifier,
+)
 from sklearn.impute import MissingIndicator, SimpleImputer
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.model_selection import cross_val_score, train_test_split

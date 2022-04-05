@@ -1,5 +1,7 @@
 import pickle
+
 from sklearn.pipeline import Pipeline
+
 
 class FirePipeline(Pipeline):
     """wrapper of sklearn pipeline"""

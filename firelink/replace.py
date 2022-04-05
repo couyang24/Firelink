@@ -2,7 +2,7 @@ from firelink.fire import Firstflame
 
 
 class ConditionalReplace(Firstflame):
-    """ conidtional statement """
+    """conidtional statement"""
 
     def __init__(self, col, val, cond):
         self.col = col
@@ -10,5 +10,5 @@ class ConditionalReplace(Firstflame):
         self.cond = cond
 
     def transform(self, X, y=None):
-        """ transform """
+        """transform"""
         pass

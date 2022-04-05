@@ -1,0 +1,11 @@
+include *.yaml
+recursive-include docs *.bat
+recursive-include docs *.nojekyll
+recursive-include docs *.py
+recursive-include docs *.rst
+recursive-include docs Makefile
+recursive-include firelink *.py
+recursive-include playground *.md
+recursive-include playground *.py
+recursive-include playground *.sh
+recursive-include setup *.txt

@@ -6,12 +6,9 @@ from setuptools import setup
 def _read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
-
-exec(open("firelink/_version.py").read())
-
 setup(
     name="firelink",
-    version=__version__,
+    version="0.1.0",
     author="Chengran (Owen) Ouyang",
     author_email="chengranouyang@gmail.com",
     description=(
@@ -20,5 +17,6 @@ setup(
     license="Apache License",
     keywords="firelink documentation tutorial",
     packages=["firelink"],
+    install_requires=["pandas", "scikit-learn", "numpy"],
     long_description=_read("README.md"),
 )

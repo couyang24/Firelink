@@ -143,6 +143,18 @@ class Agg(Firstflame):
         return X.agg(self.func, self.axis, self.args, **self.kwargs)
 
 
+class Assign(Firstflame):
+    """Assign"""
+
+    def __init__(self, **kwargs):
+        self.__dict__.update(**kwargs)
+        self.kwargs = kwargs
+
+    def transform(self, X, y=None):
+        """transform"""
+        return X.assign(**self.kwargs)
+
+
 class Fillna(Firstflame):
     """Fillna"""
 

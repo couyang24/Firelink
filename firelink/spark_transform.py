@@ -9,7 +9,7 @@ class WithColumn(Firstflame):
         self.col = col
 
     def transform(self, X, y=None):
-        return X.withColumn(self.colname, self.col)
+        return X.withColumn(self.colname, eval(self.col))
 
 
 class Select(Firstflame):

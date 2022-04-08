@@ -6,6 +6,7 @@ from setuptools import setup
 def _read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+
 setup(
     name="firelink",
     version="0.1.0",

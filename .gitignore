@@ -1,3 +1,12 @@
+# ember files
+*.ember
+
+# Catboost
+playground/catboost_info/*
+
+# jupyter notebook
+*.ipynb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

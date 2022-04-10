@@ -1,5 +1,5 @@
 from firelink.fire import Firstflame
-
+from pyspark.sql import SparkSession, functions as F
 
 class WithColumn(Firstflame):
     """with column"""

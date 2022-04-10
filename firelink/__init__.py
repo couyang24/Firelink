@@ -4,7 +4,7 @@ from .logger import get_logger
 
 print(
     """
-I am a Fire Keeper. I tend to the flame, and tend to thee. May the fire guide thee!
+I am a Fire Keeper. I tend to the flame, and tend to thee. May the flame guide thee!
 
                                      g,
                                     @@@

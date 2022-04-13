@@ -37,7 +37,7 @@ import seaborn as sns
 import xgboost as xgb
 from firelink.fire import Firstflame
 from firelink.pipeline import FirePipeline
-from firelink.transform import Drop_duplicates, Filter
+from firelink.pandas_transform import Drop_duplicates, Filter
 from sklearn import set_config
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.compose import ColumnTransformer

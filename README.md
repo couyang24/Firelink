@@ -24,7 +24,7 @@ pip install firelink
 ```
 import pandas as pd
 from pandas.testing import assert_frame_equal
-from firelink.transform import Drop_duplicates, Filter
+from firelink.pandas_transform import Drop_duplicates, Filter
 from firelink.pipeline import FirePipeline
 
 df = pd.DataFrame(
@@ -59,7 +59,7 @@ assert_frame_equal(df1, df2)
 import pandas as pd
 from pandas.testing import assert_frame_equal
 from firelink.spark_transform import WithColumn
-from firelink.transform import Assign
+from firelink.pandas_transform import Assign
 from firelink.pipeline import FirePipeline
 from pyspark.sql import SparkSession, functions as F
 

@@ -1,5 +1,5 @@
 name: Installation Issue
-description: Report issues installing the pandas library on your system
+description: Report issues installing the firelink library on your system
 title: "BUILD: "
 labels: [Build, Needs Triage]
 

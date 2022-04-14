@@ -40,7 +40,7 @@ body:
         Please provide the version of firelink you are trying to install.
     validations:
       required: true
-  - type: input\
+  - type: input
     id: python
     attributes:
       label: Python Version

@@ -88,6 +88,10 @@ pandas_pipe.fit_transform(df)
 assert_frame_equal(sdf.toPandas(), pandas_pipe.fit_transform(df))
 ```
 
+### Pipeline Example Structure Visualization
+
+![Imgur](https://i.imgur.com/x6CJ0sh.png)
+
 ## Detailed Documentation
 
 For the detailed documentation, please go through this [portal](https://couyang24.github.io/Firelink/).

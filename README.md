@@ -1,6 +1,7 @@
 # Firelink
 
 [![Python 3.7, 3.8, 3.9, 3.10](https://img.shields.io/pypi/pyversions/p)](https://www.python.org/downloads/release/python-388/)
+[![couyang24](https://circleci.com/gh/couyang24/Firelink.svg?style=svg)](https://circleci.com/gh/couyang24/Firelink)
 [![CodeQL](https://github.com/couyang24/Firelink/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/couyang24/Firelink/actions/workflows/codeql-analysis.yml)
 [![pages-build-deployment](https://github.com/couyang24/Firelink/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/couyang24/Firelink/actions/workflows/pages/pages-build-deployment)
 [![License](https://img.shields.io/hexpm/l/num)](https://github.com/couyang24/firelink/blob/main/LICENSE)

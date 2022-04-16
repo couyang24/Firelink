@@ -1,14 +1,6 @@
 firelink package
 ================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   firelink.tests
-
 Submodules
 ----------
 
@@ -40,6 +32,14 @@ firelink.replace module
 -----------------------
 
 .. automodule:: firelink.replace
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+firelink.spark\_transform module
+--------------------------------
+
+.. automodule:: firelink.spark_transform
    :members:
    :undoc-members:
    :show-inheritance:

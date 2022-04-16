@@ -48,10 +48,10 @@ class Select_dtypes(Firstflame):
 class Query(Firstflame):
     """Query"""
 
-    def __init__(self, expr, inplace=False, **kwargs):
+    def __init__(self, expr, inplace=False, kwargs={}):
         self.expr = expr
         self.inplace = inplace
-        self.__dict__.update(**kwargs)
+        self.kwargs = kwargs
 
     def transform(self, X, y=None):
         """transform"""
@@ -74,13 +74,12 @@ class Astype(Firstflame):
 class Apply(Firstflame):
     """Apply"""
 
-    def __init__(self, func, axis=0, raw=False, result_type=None, args=(), **kwargs):
+    def __init__(self, func, axis=0, raw=False, result_type=None, args=(), kwargs={}):
         self.func = func
         self.axis = axis
         self.raw = raw
         self.result_type = result_type
         self.args = args
-        self.__dict__.update(**kwargs)
         self.kwargs = kwargs
 
     def transform(self, X, y=None):
@@ -131,23 +130,21 @@ class Groupby(Firstflame):
 class Agg(Firstflame):
     """Agg"""
 
-    def __init__(self, func=None, axis=0, *args, **kwargs):
+    def __init__(self, func=None, axis=0, args=[], kwargs={}):
         self.func = func
         self.axis = axis
         self.args = args
-        self.__dict__.update(**kwargs)
         self.kwargs = kwargs
 
     def transform(self, X, y=None):
         """transform"""
-        return X.agg(self.func, self.axis, self.args, **self.kwargs)
+        return X.agg(self.func, self.axis, *self.args, **self.kwargs)
 
 
 class Assign(Firstflame):
     """Assign"""
 
-    def __init__(self, **kwargs):
-        self.__dict__.update(**kwargs)
+    def __init__(self, kwargs={}):
         self.kwargs = kwargs
 
     def transform(self, X, y=None):

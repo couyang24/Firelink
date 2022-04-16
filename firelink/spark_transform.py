@@ -15,11 +15,11 @@ class WithColumn(Firstflame):
 class Select(Firstflame):
     """select"""
 
-    def __init__(self, *col):
+    def __init__(self, col):
         self.col = col
 
     def transform(self, X, y=None):
-        return X.select(self.col)
+        return X.select(*self.col)
 
 
 class ConditionalMapping(Firstflame):

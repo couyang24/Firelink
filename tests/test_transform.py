@@ -3,7 +3,7 @@ import pandas as pd
 from pandas.testing import assert_frame_equal
 
 from firelink.pipeline import FirePipeline
-from firelink.transform import Filter
+from firelink.pandas_transform import Filter
 
 
 def test_filter():

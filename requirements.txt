@@ -5,7 +5,7 @@ isort
 jupytext
 matplotlib
 numpy
-pandas
+pandas>=1.0.0,<=1.4.2
 pre-commit
 pytest
 scikit-learn

@@ -1,6 +1,7 @@
 # Firelink
 
 [![Python 3.7, 3.8, 3.9, 3.10](https://img.shields.io/pypi/pyversions/p)](https://www.python.org/downloads/release/python-388/)
+[![couyang24](https://circleci.com/gh/couyang24/Firelink.svg?style=svg)](https://circleci.com/gh/couyang24/Firelink)
 [![CodeQL](https://github.com/couyang24/Firelink/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/couyang24/Firelink/actions/workflows/codeql-analysis.yml)
 [![pages-build-deployment](https://github.com/couyang24/Firelink/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/couyang24/Firelink/actions/workflows/pages/pages-build-deployment)
 [![License](https://img.shields.io/hexpm/l/num)](https://github.com/couyang24/firelink/blob/main/LICENSE)
@@ -24,7 +25,7 @@ pip install firelink
 ```
 import pandas as pd
 from pandas.testing import assert_frame_equal
-from firelink.transform import Drop_duplicates, Filter
+from firelink.pandas_transform import Drop_duplicates, Filter
 from firelink.pipeline import FirePipeline
 
 df = pd.DataFrame(
@@ -59,7 +60,7 @@ assert_frame_equal(df1, df2)
 import pandas as pd
 from pandas.testing import assert_frame_equal
 from firelink.spark_transform import WithColumn
-from firelink.transform import Assign
+from firelink.pandas_transform import Assign
 from firelink.pipeline import FirePipeline
 from pyspark.sql import SparkSession, functions as F
 
@@ -87,6 +88,10 @@ pandas_pipe.fit_transform(df)
 
 assert_frame_equal(sdf.toPandas(), pandas_pipe.fit_transform(df))
 ```
+
+### Pipeline Example Structure Visualization
+
+![Imgur](https://i.imgur.com/x6CJ0sh.png)
 
 ## Detailed Documentation
 

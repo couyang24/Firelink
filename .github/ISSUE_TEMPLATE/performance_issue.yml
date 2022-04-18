@@ -1,6 +1,6 @@
 name: Performance Issue
 description: Report slow performance or memory issues when running firelink code
-title: "PERF: "
+title: ":zap: "
 labels: [Performance, Needs Triage]
 
 body:

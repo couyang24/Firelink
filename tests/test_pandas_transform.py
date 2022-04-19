@@ -2,19 +2,19 @@ import numpy as np
 import pandas as pd
 from pandas.testing import assert_frame_equal
 
-from firelink.pipeline import FirePipeline
 from firelink.pandas_transform import (
-    Filter,
-    Drop_duplicates,
-    Select_dtypes,
-    Query,
-    Astype,
-    Apply,
-    Groupby,
     Agg,
+    Apply,
     Assign,
+    Astype,
+    Drop_duplicates,
     Fillna,
+    Filter,
+    Groupby,
+    Query,
+    Select_dtypes,
 )
+from firelink.pipeline import FirePipeline
 
 
 def test_filter(test_pandas_df):
@@ -102,13 +102,13 @@ def test_assign(test_pandas_df):
     expected = pd.DataFrame(
         {"temp": [32.0, 33.8, 35.6, 37.4, 39.2, 41.0, 42.8, 44.6, 46.4, 48.2]}
     )
-    output = Assign({'temp':lambda x: x.a * 9 / 5 + 32}).fit_transform(test_pandas_df)[['temp']]
+    output = Assign({"temp": lambda x: x.a * 9 / 5 + 32}).fit_transform(test_pandas_df)[
+        ["temp"]
+    ]
     assert_frame_equal(output, expected)
 
 
 def test_fillna(test_pandas_df):
-    expected = pd.DataFrame(
-        {"e": [-1, "d", "a", "d", "e", "e", "a", "a", "d", "d"]}
-    )
-    output = Fillna(-1).fit_transform(test_pandas_df)[['e']]
+    expected = pd.DataFrame({"e": [-1, "d", "a", "d", "e", "e", "a", "a", "d", "d"]})
+    output = Fillna(-1).fit_transform(test_pandas_df)[["e"]]
     assert_frame_equal(output, expected)

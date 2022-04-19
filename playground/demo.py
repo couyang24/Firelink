@@ -25,19 +25,15 @@
 
 
 import catboost as cgb
-import firelink
 import lightgbm as lgb
 
 # +
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from pandas.testing import assert_frame_equal
 import seaborn as sns
 import xgboost as xgb
-from firelink.fire import Firstflame
-from firelink.pipeline import FirePipeline
-from firelink.pandas_transform import Drop_duplicates, Filter
+from pandas.testing import assert_frame_equal
 from sklearn import set_config
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.compose import ColumnTransformer
@@ -59,6 +55,11 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
+
+import firelink
+from firelink.fire import Firstflame
+from firelink.pandas_transform import Drop_duplicates, Filter
+from firelink.pipeline import FirePipeline
 
 # %load_ext autoreload
 # %autoreload 2
@@ -275,9 +276,11 @@ print(np.mean(cross_val_score(clf, X, y, scoring="roc_auc", cv=cv)))
 
 # ## Spark Transformation
 
+from pyspark.sql import SparkSession
+from pyspark.sql import functions as F
+
 from firelink.spark_transform import WithColumn
 from firelink.transform import Assign
-from pyspark.sql import SparkSession, functions as F
 
 spark = SparkSession.builder.appName("spark_session").enableHiveSupport().getOrCreate()
 
@@ -295,8 +298,8 @@ spark_pipe
 sdf = spark_pipe.fit_transform(sdf)
 sdf.show()
 
-add1 = Assign(**{"Country": "Canada"})
-add2 = Assign(**{"City": "Toronto"})
+add1 = Assign({"Country": "Canada"})
+add2 = Assign({"City": "Toronto"})
 pandas_pipe = FirePipeline([("Add Country", add1), ("Add City", add2)])
 
 pandas_pipe.fit_transform(df)

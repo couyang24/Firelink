@@ -1,6 +1,6 @@
 import pandas as pd
-from pyspark.sql import SparkSession
 import pytest
+from pyspark.sql import SparkSession
 
 
 @pytest.fixture
@@ -22,8 +22,6 @@ def spark_session(request):
     Args:
     request: pytest.FixtureRequest object
     """
-    spark = (
-        SparkSession.builder.appName("spark_session").enableHiveSupport().getOrCreate()
-    )
+    spark = SparkSession.builder.appName("spark_session").getOrCreate()
     request.addfinalizer(lambda: spark.sparkContext.stop())
     return spark

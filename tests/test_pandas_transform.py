@@ -3,12 +3,12 @@ import pandas as pd
 from pandas.testing import assert_frame_equal
 
 from firelink.pipeline import FirePipeline
-from firelink.pandas_transform import Filter, Drop_duplicates, Select_dtypes, Query
+from firelink.pandas_transform import Filter, Drop_duplicates, Select_dtypes, Query, Astype, Apply, Groupby
 
 
 def test_filter(test_pandas_df):
     expected = pd.DataFrame(
-        {"a": range(10), "e": ["a", "d", "a", "d", "e", "e", "a", "a", "d", "d"]}
+        {"a": range(10), "e": [None, "d", "a", "d", "e", "e", "a", "a", "d", "d"]}
     )
     output = Filter(["a", "e"]).fit_transform(test_pandas_df)
     assert_frame_equal(output, expected)
@@ -48,5 +48,45 @@ def test_query(test_pandas_df):
         Query("a>5 and d in ['j', 'q']")
         .fit_transform(test_pandas_df)
         .reset_index(drop=True)
+    )
+    assert_frame_equal(output, expected)
+
+
+def test_astype(test_pandas_df):
+    expected = 'O'
+    output = (
+        Astype("object")
+        .fit_transform(test_pandas_df["a"])
+        .dtype
+    )
+    assert output == expected
+
+
+def test_apply(test_pandas_df):
+    expected = pd.DataFrame(
+        {
+            "index": ["a", "b", "c"],
+            0: [45, 145, 245],
+        }
+    )
+    output = (
+        Apply(np.sum, axis=0)
+        .fit_transform(test_pandas_df[["a", "b", "c"]]).reset_index(drop=False)
+    )
+    assert_frame_equal(output, expected)
+
+
+def test_groupby(test_pandas_df):
+    expected = pd.DataFrame(
+        {
+            "e": ["a", "d", "e"],
+            "a": [15, 21, 9],
+            "b": [45, 61, 29],
+            "c": [75, 101, 49]
+        }
+    )
+    output = (
+        Groupby("e")
+        .fit_transform(test_pandas_df).sum().reset_index(drop=False)
     )
     assert_frame_equal(output, expected)

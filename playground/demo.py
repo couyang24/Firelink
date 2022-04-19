@@ -136,7 +136,10 @@ features = []
 categorical_transformer = FirePipeline(
     steps=[
         ("cimputer", SimpleImputer(strategy="most_frequent")),
-        ("ordinalencoder", OrdinalEncoder()),
+        (
+            "ordinalencoder",
+            OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1),
+        ),
         ("nimputer", SimpleImputer(strategy="median")),
         ("scaler", StandardScaler()),
     ]

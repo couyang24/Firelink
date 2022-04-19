@@ -108,8 +108,8 @@ class Groupby(Firstflame):
         self.axis = axis
         self.level = level
         self.as_index = as_index
-        self.sort = sort,
-        self.group_keys = group_keys,
+        self.sort = (sort,)
+        self.group_keys = (group_keys,)
         self.squeeze = squeeze
         self.observed = observed
         self.dropna = dropna

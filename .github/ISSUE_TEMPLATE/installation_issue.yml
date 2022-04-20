@@ -1,6 +1,6 @@
 name: Installation Issue
 description: Report issues installing the firelink library on your system
-title: "BUILD: "
+title: ":package: "
 labels: [Build, Needs Triage]
 
 body:

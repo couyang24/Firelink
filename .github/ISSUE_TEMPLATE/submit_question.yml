@@ -1,6 +1,6 @@
 name: Submit Question
 description: Ask a general question about pandas
-title: "QST: "
+title: ":bulb: "
 labels: [Usage Question, Needs Triage]
 
 body:

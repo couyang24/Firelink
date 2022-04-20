@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tests package &mdash; Firelink  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Firelink
+          </a>
+              <div class="version">
+                0.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Firelink</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Firelink</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>tests package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tests.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tests-package">
+<h1>tests package<a class="headerlink" href="#tests-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-tests.conftest">
+<span id="tests-conftest-module"></span><h2>tests.conftest module<a class="headerlink" href="#module-tests.conftest" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.conftest.spark_session">
+<span class="sig-prename descclassname"><span class="pre">tests.conftest.</span></span><span class="sig-name descname"><span class="pre">spark_session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/conftest.html#spark_session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.conftest.spark_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>fixture for creating a spark context
+Args:
+request: pytest.FixtureRequest object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.conftest.test_pandas_df">
+<span class="sig-prename descclassname"><span class="pre">tests.conftest.</span></span><span class="sig-name descname"><span class="pre">test_pandas_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/conftest.html#test_pandas_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.conftest.test_pandas_df" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.conftest.test_spark_df">
+<span class="sig-prename descclassname"><span class="pre">tests.conftest.</span></span><span class="sig-name descname"><span class="pre">test_spark_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spark_session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_pandas_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/conftest.html#test_spark_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.conftest.test_spark_df" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-tests.test_pandas_transform">
+<span id="tests-test-pandas-transform-module"></span><h2>tests.test_pandas_transform module<a class="headerlink" href="#module-tests.test_pandas_transform" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_pandas_transform.test_agg">
+<span class="sig-prename descclassname"><span class="pre">tests.test_pandas_transform.</span></span><span class="sig-name descname"><span class="pre">test_agg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_pandas_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pandas_transform.html#test_agg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_pandas_transform.test_agg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_pandas_transform.test_apply">
+<span class="sig-prename descclassname"><span class="pre">tests.test_pandas_transform.</span></span><span class="sig-name descname"><span class="pre">test_apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_pandas_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pandas_transform.html#test_apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_pandas_transform.test_apply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_pandas_transform.test_assign">
+<span class="sig-prename descclassname"><span class="pre">tests.test_pandas_transform.</span></span><span class="sig-name descname"><span class="pre">test_assign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_pandas_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pandas_transform.html#test_assign"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_pandas_transform.test_assign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_pandas_transform.test_astype">
+<span class="sig-prename descclassname"><span class="pre">tests.test_pandas_transform.</span></span><span class="sig-name descname"><span class="pre">test_astype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_pandas_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pandas_transform.html#test_astype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_pandas_transform.test_astype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_pandas_transform.test_drop_duplicates">
+<span class="sig-prename descclassname"><span class="pre">tests.test_pandas_transform.</span></span><span class="sig-name descname"><span class="pre">test_drop_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_pandas_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pandas_transform.html#test_drop_duplicates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_pandas_transform.test_drop_duplicates" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_pandas_transform.test_fillna">
+<span class="sig-prename descclassname"><span class="pre">tests.test_pandas_transform.</span></span><span class="sig-name descname"><span class="pre">test_fillna</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_pandas_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pandas_transform.html#test_fillna"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_pandas_transform.test_fillna" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_pandas_transform.test_filter">
+<span class="sig-prename descclassname"><span class="pre">tests.test_pandas_transform.</span></span><span class="sig-name descname"><span class="pre">test_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_pandas_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pandas_transform.html#test_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_pandas_transform.test_filter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_pandas_transform.test_groupby">
+<span class="sig-prename descclassname"><span class="pre">tests.test_pandas_transform.</span></span><span class="sig-name descname"><span class="pre">test_groupby</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_pandas_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pandas_transform.html#test_groupby"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_pandas_transform.test_groupby" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_pandas_transform.test_query">
+<span class="sig-prename descclassname"><span class="pre">tests.test_pandas_transform.</span></span><span class="sig-name descname"><span class="pre">test_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_pandas_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pandas_transform.html#test_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_pandas_transform.test_query" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_pandas_transform.test_select_dtypes">
+<span class="sig-prename descclassname"><span class="pre">tests.test_pandas_transform.</span></span><span class="sig-name descname"><span class="pre">test_select_dtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_pandas_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pandas_transform.html#test_select_dtypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_pandas_transform.test_select_dtypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-tests.test_spark_transform">
+<span id="tests-test-spark-transform-module"></span><h2>tests.test_spark_transform module<a class="headerlink" href="#module-tests.test_spark_transform" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_spark_transform.test_conditionalmappilng">
+<span class="sig-prename descclassname"><span class="pre">tests.test_spark_transform.</span></span><span class="sig-name descname"><span class="pre">test_conditionalmappilng</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_spark_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_spark_transform.html#test_conditionalmappilng"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_spark_transform.test_conditionalmappilng" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_spark_transform.test_select">
+<span class="sig-prename descclassname"><span class="pre">tests.test_spark_transform.</span></span><span class="sig-name descname"><span class="pre">test_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_spark_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_spark_transform.html#test_select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_spark_transform.test_select" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_spark_transform.test_withcolumn">
+<span class="sig-prename descclassname"><span class="pre">tests.test_spark_transform.</span></span><span class="sig-name descname"><span class="pre">test_withcolumn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_spark_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_spark_transform.html#test_withcolumn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_spark_transform.test_withcolumn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-tests">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tests" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Chengran (Owen) Ouyang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

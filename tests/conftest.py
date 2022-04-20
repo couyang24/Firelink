@@ -25,3 +25,8 @@ def spark_session(request):
     spark = SparkSession.builder.appName("spark_session").getOrCreate()
     request.addfinalizer(lambda: spark.sparkContext.stop())
     return spark
+
+
+@pytest.fixture
+def test_spark_df(spark_session, test_pandas_df):
+    return spark_session.createDataFrame(test_pandas_df)

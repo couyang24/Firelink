@@ -38,5 +38,5 @@ class ConditionalMapping(Firstflame):
     def transform(self, X, y=None):
         return X.withColumn(
             self.new_col,
-            when(X[self.col].isin(self.val), self.result).otherwise(self.fill),
+            F.when(X[self.col].isin(self.val), self.result).otherwise(self.fill),
         )

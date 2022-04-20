@@ -20,5 +20,5 @@ setup(
     packages=["firelink"],
     install_requires=["pandas", "scikit-learn", "numpy"],
     long_description=_read("README.md"),
-    long_description_content_type='text/markdown',
+    long_description_content_type="text/markdown",
 )

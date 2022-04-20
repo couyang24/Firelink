@@ -33,6 +33,12 @@ jobs:
           pkg-manager: pip
           app-dir: ~/project/  # If you're requirements.txt isn't in the root directory.
           # pip-dependency-file: test-requirements.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
+      - run: &install_packages
+          name: Install system packages
+          command: |
+            # pyspark needs to run Java, so we install openjdk.
+            sudo apt-get update
+            sudo apt-get install -y default-jre-headless
       - run:
           name: Install firelink
           command: pip install .
@@ -47,4 +53,7 @@ workflows:
   validation: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - build
+      - build:
+        branches:
+          ignore:
+            - gh-pages

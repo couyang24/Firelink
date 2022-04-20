@@ -64,11 +64,11 @@ class Astype(Firstflame):
     def __init__(self, dtype, copy=True, errors="raise"):
         self.dtype = dtype
         self.copy = copy
-        self.errors = erros
+        self.errors = errors
 
     def transform(self, X, y=None):
         """transform"""
-        return X.astype(self.type, self.copy, self.errors)
+        return X.astype(self.dtype, self.copy, self.errors)
 
 
 class Apply(Firstflame):
@@ -108,6 +108,8 @@ class Groupby(Firstflame):
         self.axis = axis
         self.level = level
         self.as_index = as_index
+        self.sort = (sort,)
+        self.group_keys = (group_keys,)
         self.squeeze = squeeze
         self.observed = observed
         self.dropna = dropna

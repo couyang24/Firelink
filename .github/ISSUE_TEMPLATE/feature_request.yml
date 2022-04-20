@@ -1,0 +1,67 @@
+name: Feature Request
+description: Suggest an idea for firelink library
+title: ":sparkles: "
+labels: [Enhancement, Needs Triage]
+
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Identify the Problem
+      description: >
+        Please provide a description of what the problem is.
+      value: >
+        <details>
+
+
+        I wish I could use firelink to do [...]
+
+
+        </details>
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Feature Request
+      description: >
+        Please provide a description of what the solution you would like and try to write a docstring for the desired feature.
+      value: >
+        <details>
+
+
+        `firelink.pandas_transform` should get a new parameter `Agg` that [...]
+
+
+        </details>
+    validations:
+      required: true
+  - type: textarea
+    id: api
+    attributes:
+      label: Implications on API
+      description: >
+        Please provide a description of how this feature will affect the API.
+    validations:
+      required: true
+  - type: textarea
+    id: alternative
+    attributes:
+      label: Alternative Solution
+      description: >
+        Please provide a description of any alternative solutions or features you've considered.
+    validations:
+      required: true
+  - type: textarea
+    id: other
+    attributes:
+      label: Additional Information
+      description: >
+        Please provide any other context, code examples, or references to existing implementations about the feature request here.
+      placeholder: >
+        # Your code here, if applicable
+
+        ...
+      render: python
+    validations:
+      required: true

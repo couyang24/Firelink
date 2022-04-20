@@ -1,6 +1,6 @@
 name: Bug Report
 description: Report incorrect behavior in the firelink library
-title: "BUG: "
+title: ":bug: "
 labels: [Bug, Needs Triage]
 
 body:
@@ -17,7 +17,7 @@ body:
             [latest version](https://pypi.org/project/firelink/) of firelink.
           required: true
         - label: >
-            I have confirmed this bug exists on the main branch of pandas.
+            I have confirmed this bug exists on the main branch of firelink.
   - type: textarea
     id: example
     attributes:

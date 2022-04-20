@@ -1,12 +1,12 @@
 name: Documentation Improvement
 description: Report wrong or missing documentation
-title: "DOC: "
+title: ":memo: "
 labels: [Docs, Needs Triage]
 
 body:
   - type: checkboxes
     attributes:
-      label: Pandas version checks
+      label: Firelink version checks
       options:
         - label: >
             I have checked that the issue still exists on the latest versions of the docs

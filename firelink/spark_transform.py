@@ -1,5 +1,8 @@
+from pyspark.sql import SparkSession
+from pyspark.sql import functions as F
+
 from firelink.fire import Firstflame
-from pyspark.sql import SparkSession, functions as F
+
 
 class WithColumn(Firstflame):
     """with column"""
@@ -35,5 +38,5 @@ class ConditionalMapping(Firstflame):
     def transform(self, X, y=None):
         return X.withColumn(
             self.new_col,
-            when(X[self.col].isin(self.val), self.result).otherwise(self.fill),
+            F.when(X[self.col].isin(self.val), self.result).otherwise(self.fill),
         )

@@ -80,8 +80,8 @@ spark_pipe
 sdf = spark_pipe.fit_transform(sdf)
 sdf.show()
 
-add1 = Assign(**{"Country": "Canada"})
-add2 = Assign(**{"City": "Toronto"})
+add1 = Assign({"Country": "Canada"})
+add2 = Assign({"City": "Toronto"})
 pandas_pipe = FirePipeline([("Add Country", add1), ("Add City", add2)])
 
 pandas_pipe.fit_transform(df)

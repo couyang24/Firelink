@@ -37,8 +37,8 @@ jobs:
           name: Install system packages
           command: |
             # pyspark needs to run Java, so we install openjdk.
-            apt-get update
-            apt-get install -y default-jre-headless
+            sudo apt-get update
+            sudo apt-get install -y default-jre-headless
       - run:
           name: Install firelink
           command: pip install .

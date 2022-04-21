@@ -1,6 +1,7 @@
 import pandas as pd
 import pytest
 from pyspark.sql import SparkSession
+from sklearn import datasets
 
 
 @pytest.fixture
@@ -14,6 +15,18 @@ def test_pandas_df():
             "e": [None, "d", "a", "d", "e", "e", "a", "a", "d", "d"],
         }
     )
+
+
+@pytest.fixture
+def test_iris_df():
+    iris = datasets.load_iris()
+    columns = ["_".join(i.split()[:2]) for i in iris["feature_names"]]
+    df = pd.DataFrame(iris["data"], columns=columns)
+    df["target"] = pd.DataFrame(iris["target"])
+    dct = {i: iris["target_names"][i] for i in range(3)}
+    df["target"] = df.target.apply(lambda x: dct[x])
+    df.loc[:10, ["petal_length", "target"]] = None
+    return df
 
 
 @pytest.fixture(scope="session")

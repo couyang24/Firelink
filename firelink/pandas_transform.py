@@ -17,7 +17,7 @@ class Filter(Firstflame):
         return X.filter(self.items, self.like, self.regex, self.axis)
 
 
-class Drop_duplicates(Firstflame):
+class DropDuplicates(Firstflame):
     """Drop_duplicates"""
 
     def __init__(self, subset=None, keep="first", inplace=False, ignore_index=False):
@@ -33,7 +33,7 @@ class Drop_duplicates(Firstflame):
         )
 
 
-class Select_dtypes(Firstflame):
+class SelectDtypes(Firstflame):
     """Select_dtypes"""
 
     def __init__(self, include=None, exclude=None):

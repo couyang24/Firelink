@@ -11,4 +11,4 @@ class ConditionalReplace(Firstflame):
 
     def transform(self, X, y=None):
         """transform"""
-        pass
+        raise NotImplementedError("ConditionalReplace is currently not implemented.")

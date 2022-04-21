@@ -2,6 +2,7 @@
 
 [![Python 3.7, 3.8, 3.9, 3.10](https://img.shields.io/pypi/pyversions/p)](https://www.python.org/downloads/release/python-388/)
 [![couyang24](https://circleci.com/gh/couyang24/Firelink.svg?style=svg)](https://circleci.com/gh/couyang24/Firelink)
+[![Python package](https://github.com/couyang24/Firelink/actions/workflows/python-package.yml/badge.svg)](https://github.com/couyang24/Firelink/actions/workflows/python-package.yml)
 [![CodeQL](https://github.com/couyang24/Firelink/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/couyang24/Firelink/actions/workflows/codeql-analysis.yml)
 [![pages-build-deployment](https://github.com/couyang24/Firelink/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/couyang24/Firelink/actions/workflows/pages/pages-build-deployment)
 [![License](https://img.shields.io/hexpm/l/num)](https://github.com/couyang24/firelink/blob/main/LICENSE)
@@ -25,7 +26,7 @@ pip install firelink
 ```
 import pandas as pd
 from pandas.testing import assert_frame_equal
-from firelink.pandas_transform import Drop_duplicates, Filter
+from firelink.pandas_transform import DropDuplicates, Filter
 from firelink.pipeline import FirePipeline
 
 df = pd.DataFrame(
@@ -39,7 +40,7 @@ df = pd.DataFrame(
 )
 
 trans_1 = Filter(["a", "e"])
-trans_2 = Drop_duplicates(["e"], keep="first")
+trans_2 = DropDuplicates(["e"], keep="first")
 
 pipe_1 = FirePipeline(
     [("filter column a and e", trans_1), ("drop duplicate for column e", trans_2)]

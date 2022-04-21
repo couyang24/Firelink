@@ -7,12 +7,12 @@ from firelink.pandas_transform import (
     Apply,
     Assign,
     Astype,
-    Drop_duplicates,
+    DropDuplicates,
     Fillna,
     Filter,
     Groupby,
     Query,
-    Select_dtypes,
+    SelectDtypes,
 )
 from firelink.pipeline import FirePipeline
 
@@ -28,7 +28,7 @@ def test_filter(test_pandas_df):
 def test_drop_duplicates(test_pandas_df):
     expected = pd.DataFrame({"d": ["a", "n", "d", "f", "g", "h", "j", "q", "w"]})
     output = (
-        Drop_duplicates().fit_transform(test_pandas_df[["d"]]).reset_index(drop=True)
+        DropDuplicates().fit_transform(test_pandas_df[["d"]]).reset_index(drop=True)
     )
     assert_frame_equal(output, expected)
 
@@ -41,7 +41,7 @@ def test_select_dtypes(test_pandas_df):
             "c": range(20, 30),
         }
     )
-    output = Select_dtypes(include=["int64"]).fit_transform(test_pandas_df)
+    output = SelectDtypes(include=["int64"]).fit_transform(test_pandas_df)
     assert_frame_equal(output, expected)
 
 

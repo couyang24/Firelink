@@ -58,7 +58,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 import firelink
 from firelink.fire import Firstflame
-from firelink.pandas_transform import Drop_duplicates, Filter
+from firelink.pandas_transform import DropDuplicates, Filter
 from firelink.pipeline import FirePipeline
 
 # %load_ext autoreload
@@ -98,7 +98,7 @@ df = pd.DataFrame(
 )
 
 trans_1 = Filter(["a", "e"])
-trans_2 = Drop_duplicates(["e"], keep="first")
+trans_2 = DropDuplicates(["e"], keep="first")
 
 pipe_1 = FirePipeline(
     [("filter column a and e", trans_1), ("drop duplicate for column e", trans_2)]

@@ -6,27 +6,43 @@ from firelink.imputation import DecisionImputation
 
 
 @pytest.mark.parametrize(
-    "target, features, mtype, expected",
+    "target, features, mtype, index, expected",
     [
         (
             "target",
             ["sepal_length", "sepal_width", "petal_width"],
             "clf",
+            0,
             "setosa",
+        ),
+        (
+            "target",
+            ["sepal_length", "sepal_width", "petal_width"],
+            "clf",
+            149,
+            "versicolor",
         ),
         (
             "petal_length",
             ["sepal_length", "sepal_width", "petal_width"],
             "reg",
-            1.46410256,
+            0,
+            1.46,
+        ),
+        (
+            "petal_length",
+            ["sepal_length", "sepal_width", "petal_width"],
+            "reg",
+            149,
+            4.86,
         ),
     ],
 )
-def test_decisionimputation(target, features, mtype, expected, test_iris_df):
+def test_decisionimputation(target, features, mtype, index, expected, test_iris_df):
     output = (
         DecisionImputation(target, features, mtype)
         .fit_transform(test_iris_df)
-        .loc[0, target]
+        .loc[index, target]
     )
     if type(expected) == float:
         assert_almost_equal(output, expected)

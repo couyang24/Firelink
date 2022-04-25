@@ -26,6 +26,7 @@ def test_iris_df():
     dct = {i: iris["target_names"][i] for i in range(3)}
     df["target"] = df.target.apply(lambda x: dct[x])
     df.loc[:10, ["petal_length", "target"]] = None
+    df.loc[140:, ["petal_length", "target"]] = None
     return df
 
 

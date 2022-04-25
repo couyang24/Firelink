@@ -22,11 +22,11 @@ def test_iris_df():
     iris = datasets.load_iris()
     columns = ["_".join(i.split()[:2]) for i in iris["feature_names"]]
     df = pd.DataFrame(iris["data"], columns=columns)
-    df["target"] = pd.DataFrame(iris["target"])
+    df["type"] = pd.DataFrame(iris["target"])
     dct = {i: iris["target_names"][i] for i in range(3)}
-    df["target"] = df.target.apply(lambda x: dct[x])
-    df.loc[:10, ["petal_length", "target"]] = None
-    df.loc[140:, ["petal_length", "target"]] = None
+    df["type"] = df.type.apply(lambda x: dct[x])
+    df.loc[:10, ["petal_length", "type"]] = None
+    df.loc[140:, ["petal_length", "type"]] = None
     return df
 
 

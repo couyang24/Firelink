@@ -9,14 +9,14 @@ from firelink.imputation import DecisionImputation
     "target, features, mtype, index, expected",
     [
         (
-            "target",
+            "type",
             ["sepal_length", "sepal_width", "petal_width"],
             "clf",
             0,
             "setosa",
         ),
         (
-            "target",
+            "type",
             ["sepal_length", "sepal_width", "petal_width"],
             "clf",
             149,

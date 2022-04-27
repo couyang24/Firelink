@@ -319,20 +319,23 @@ df["type"] = df.type.apply(lambda x: dct[x])
 df.loc[:10, ["petal_length", "type"]] = None
 df.loc[140:, ["petal_length", "type"]] = None
 
-target = "type"
-features = ["sepal_length", "sepal_width", "petal_width"]
-mtype = "clf"
 
 df = DecisionImputation(
-    target, features, mtype, True, True, "DecisionImpute"
+    target="type",
+    features=["sepal_length", "sepal_width", "petal_width"],
+    mtype="clf",
+    plot=True,
+    write_yaml=True,
+    file_name="DecisionImpute",
 ).fit_transform(df)
 
-target = "petal_length"
-features = ["sepal_length", "sepal_width", "petal_width"]
-mtype = "reg"
-
 df = DecisionImputation(
-    target, features, mtype, True, True, "DecisionImpute"
+    target="petal_length",
+    features=["sepal_length", "sepal_width", "petal_width"],
+    mtype="reg",
+    plot=True,
+    write_yaml=True,
+    file_name="DecisionImpute",
 ).fit_transform(df)
 
 import yaml
@@ -381,3 +384,30 @@ SimpleImputation(
     write_yaml=True,
     file_name="MissingReplacement",
 ).fit_transform(df)
+
+import yaml
+
+with open("MissingReplacement.yml", "r") as infile:
+    cur_yaml = yaml.safe_load(infile)
+
+lst = []
+
+for j in ["type", "petal_length"]:
+    lst += [
+        (
+            f"transform {j}",
+            MissingReplacement(
+                cur_yaml[f"MissingReplacement_{j}"]["condition"],
+                cur_yaml[f"MissingReplacement_{j}"]["target"],
+                cur_yaml[f"MissingReplacement_{j}"]["value"],
+            ),
+        )
+    ]
+
+si_pipe = FirePipeline(lst)
+
+set_config(display="diagram")
+# set_config(display='text')
+si_pipe
+
+si = si_pipe.fit_transform(df)

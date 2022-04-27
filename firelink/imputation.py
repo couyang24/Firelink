@@ -9,15 +9,15 @@ class SimpleImputation(Firstflame):
         self,
         target,
         strategy="mean",
+        constant=None,
         write_yaml=False,
         file_name="MissingReplacement",
-        constant=None,
     ):
         self.target = target
         self.strategy = strategy
+        self.constant = constant
         self.write_yaml = write_yaml
         self.file_name = file_name
-        self.constant = constant
 
     def fit(self, X, y=None):
         if self.strategy == "mean":

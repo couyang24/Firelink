@@ -24,8 +24,9 @@
 # ## Load Packages
 
 
-import catboost as cgb
 import firelink
+
+# import catboost as cgb
 import lightgbm as lgb
 
 # +
@@ -190,7 +191,7 @@ methods = [
         xgb.XGBClassifier(max_depth=3, eval_metric="logloss", use_label_encoder=False),
     ),
     ("lgb", lgb.LGBMClassifier(max_depth=3)),
-    ("cgb", cgb.CatBoostClassifier(max_depth=3, silent=True)),
+    #            ("cgb", cgb.CatBoostClassifier(max_depth=3, silent=True)),
     ("ada", AdaBoostClassifier()),
     ("gbm", GradientBoostingClassifier()),
     ("rf", RandomForestClassifier(n_estimators=100)),
@@ -242,7 +243,7 @@ methods = [
         xgb.XGBClassifier(max_depth=3, eval_metric="logloss", use_label_encoder=False),
     ),
     ("lgb", lgb.LGBMClassifier(max_depth=3)),
-    ("cgb", cgb.CatBoostClassifier(max_depth=3, silent=True)),
+    #            ("cgb", cgb.CatBoostClassifier(max_depth=3, silent=True)),
     ("ada", AdaBoostClassifier()),
     ("gbm", GradientBoostingClassifier()),
     ("rf", RandomForestClassifier(n_estimators=100)),
@@ -323,7 +324,7 @@ features = ["sepal_length", "sepal_width", "petal_width"]
 mtype = "clf"
 
 df = DecisionImputation(
-    target, features, mtype, True, True, "decisionimpute"
+    target, features, mtype, True, True, "DecisionImpute"
 ).fit_transform(df)
 
 target = "petal_length"
@@ -331,15 +332,13 @@ features = ["sepal_length", "sepal_width", "petal_width"]
 mtype = "reg"
 
 df = DecisionImputation(
-    target, features, mtype, True, True, "decisionimpute"
+    target, features, mtype, True, True, "DecisionImpute"
 ).fit_transform(df)
 
 import yaml
 
-with open("decisionimpute.yml", "r") as infile:
+with open("DecisionImpute.yml", "r") as infile:
     cur_yaml = yaml.safe_load(infile)
-
-cur_yaml
 
 lst = []
 for i in range(2):

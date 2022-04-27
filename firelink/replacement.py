@@ -23,7 +23,10 @@ class MissingReplacement(ConditionalReplacement):
 
     def transform(self, X, y=None):
         """transform"""
-        X.loc[
-            X.eval("".join(self.condition)) & X[self.target].isnull(), self.target
-        ] = self.value
+        if self.condition != []:
+            X.loc[
+                X.eval("".join(self.condition)) & X[self.target].isnull(), self.target
+            ] = self.value
+        else:
+            X.loc[X[self.target].isnull(), self.target] = self.value
         return X

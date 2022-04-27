@@ -4,6 +4,60 @@ import yaml
 from firelink.fire import Firstflame
 
 
+class SimpleImputation(Firstflame):
+    def __init__(
+        self,
+        target,
+        strategy="mean",
+        write_yaml=False,
+        file_name="MissingReplacement",
+        constant=None,
+    ):
+        self.target = target
+        self.strategy = strategy
+        self.write_yaml = write_yaml
+        self.file_name = file_name
+        self.constant = constant
+
+    def fit(self, X, y=None):
+        if self.strategy == "mean":
+            self.impute = float(X[self.target].mean())
+        elif self.strategy == "median":
+            self.impute = float(X[self.target].median())
+        elif self.strategy == "most_frequent":
+            self.impute = str(X[self.target].mode()[0])
+        elif self.strategy == "constant":
+            self.impute = self.constant
+        else:
+            raise NotImplementedError(
+                "Only mean, median, most_frequent and constant imputation \
+          strategy is implemented for SimpleImputation."
+            )
+        return self
+
+    def transform(self, X, y=None):
+        miss_dict = {}
+        X.loc[X[self.target].isnull(), self.target] = self.impute
+        miss_dict[f"MissingReplacement_{self.target}"] = {
+            "method": "MissingReplacement",
+            "condition": [],
+            "target": self.target,
+            "value": self.impute,
+            "strategy": self.strategy,
+        }
+        if self.write_yaml:
+            try:
+                with open(f"{self.file_name}.yml", "r") as infile:
+                    cur_yaml = yaml.safe_load(infile)
+                    cur_yaml.update(miss_dict)
+                with open(f"{self.file_name}.yml", "w") as outfile:
+                    yaml.safe_dump(cur_yaml, outfile, default_flow_style=False)
+            except FileNotFoundError:
+                with open(f"{self.file_name}.yml", "w") as outfile:
+                    yaml.safe_dump(miss_dict, outfile, default_flow_style=False)
+        return X
+
+
 class DecisionImputation(Firstflame):
     def __init__(
         self,
@@ -12,12 +66,14 @@ class DecisionImputation(Firstflame):
         mtype,
         plot=False,
         write_yaml=False,
+        file_name="MissingReplacement",
     ):
         self.target = target
         self.features = features
         self.mtype = mtype
         self.plot = plot
         self.write_yaml = write_yaml
+        self.file_name = file_name
 
     def fit(self, X, y=None):
         train = X[X[[self.target]].notnull().all(1)]
@@ -58,20 +114,21 @@ class DecisionImputation(Firstflame):
               Autodetection is not implemented yet."
                 )
             X.loc[X.eval("".join(cond)) & X[self.target].isnull(), self.target] = value
-            miss_dict[f"MissingReplace_{self.target}_{i}"] = {
-                "method": "MissingReplace",
+            miss_dict[f"MissingReplacement_{self.target}_{i}"] = {
+                "method": "MissingReplacement",
                 "condition": cond,
                 "target": self.target,
                 "value": value,
+                "model_type": self.mtype,
             }
         if self.write_yaml:
             try:
-                with open("MissingReplace.yml", "r") as infile:
+                with open(f"{self.file_name}.yml", "r") as infile:
                     cur_yaml = yaml.safe_load(infile)
                     cur_yaml.update(miss_dict)
-                with open("MissingReplace.yml", "w") as outfile:
+                with open(f"{self.file_name}.yml", "w") as outfile:
                     yaml.safe_dump(cur_yaml, outfile, default_flow_style=False)
             except FileNotFoundError:
-                with open("MissingReplace.yml", "w") as outfile:
+                with open(f"{self.file_name}.yml", "w") as outfile:
                     yaml.safe_dump(miss_dict, outfile, default_flow_style=False)
         return X

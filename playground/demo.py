@@ -5,9 +5,9 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.13.8
+#       jupytext_version: 1.13.7
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -25,6 +25,7 @@
 
 
 import catboost as cgb
+import firelink
 import lightgbm as lgb
 
 # +
@@ -33,11 +34,13 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import xgboost as xgb
+from firelink.fire import Firstflame
+from firelink.pandas_transform import DropDuplicates, Filter
+from firelink.pipeline import FirePipeline
 from pandas.testing import assert_frame_equal
-from sklearn import set_config
+from sklearn import datasets, set_config
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.compose import ColumnTransformer
-from sklearn.datasets import load_breast_cancer
 from sklearn.decomposition import PCA
 from sklearn.ensemble import (
     AdaBoostClassifier,
@@ -55,11 +58,6 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
-
-import firelink
-from firelink.fire import Firstflame
-from firelink.pandas_transform import DropDuplicates, Filter
-from firelink.pipeline import FirePipeline
 
 # %load_ext autoreload
 # %autoreload 2
@@ -119,7 +117,7 @@ pipe_2.fit_transform(df)
 # <a id="ch3"></a>
 # ## Build ML Pipeline with FirePipeline and Sklean & Third Party Methods
 
-data = load_breast_cancer()
+data = datasets.load_breast_cancer()
 
 X, y = pd.DataFrame(data["data"], columns=data["feature_names"]), data["target"]
 
@@ -276,11 +274,10 @@ print(np.mean(cross_val_score(clf, X, y, scoring="roc_auc", cv=cv)))
 
 # ## Spark Transformation
 
+from firelink.pandas_transform import Assign
+from firelink.spark_transform import WithColumn
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
-
-from firelink.spark_transform import WithColumn
-from firelink.transform import Assign
 
 spark = SparkSession.builder.appName("spark_session").enableHiveSupport().getOrCreate()
 
@@ -305,3 +302,83 @@ pandas_pipe = FirePipeline([("Add Country", add1), ("Add City", add2)])
 pandas_pipe.fit_transform(df)
 
 assert_frame_equal(sdf.toPandas(), pandas_pipe.fit_transform(df))
+
+# ## Imputation
+# ### Decision Imputation
+
+from firelink.imputation import DecisionImputation, SimpleImputation
+from firelink.replacement import MissingReplacement
+
+iris = datasets.load_iris()
+columns = ["_".join(i.split()[:2]) for i in iris["feature_names"]]
+df = pd.DataFrame(iris["data"], columns=columns)
+df["type"] = pd.DataFrame(iris["target"])
+dct = {i: iris["target_names"][i] for i in range(3)}
+df["type"] = df.type.apply(lambda x: dct[x])
+df.loc[:10, ["petal_length", "type"]] = None
+df.loc[140:, ["petal_length", "type"]] = None
+
+target = "type"
+features = ["sepal_length", "sepal_width", "petal_width"]
+mtype = "clf"
+
+df = DecisionImputation(
+    target, features, mtype, True, True, "decisionimpute"
+).fit_transform(df)
+
+target = "petal_length"
+features = ["sepal_length", "sepal_width", "petal_width"]
+mtype = "reg"
+
+df = DecisionImputation(
+    target, features, mtype, True, True, "decisionimpute"
+).fit_transform(df)
+
+import yaml
+
+with open("decisionimpute.yml", "r") as infile:
+    cur_yaml = yaml.safe_load(infile)
+
+cur_yaml
+
+lst = []
+for i in range(2):
+    for j in ["type", "petal_length"]:
+        lst += [
+            (
+                f"transform {i} {j}",
+                MissingReplacement(
+                    cur_yaml[f"MissingReplacement_{j}_{i}"]["condition"],
+                    cur_yaml[f"MissingReplacement_{j}_{i}"]["target"],
+                    cur_yaml[f"MissingReplacement_{j}_{i}"]["value"],
+                ),
+            )
+        ]
+
+mr_pipe = FirePipeline(lst)
+
+set_config(display="diagram")
+# set_config(display='text')
+mr_pipe
+
+mr = mr_pipe.fit_transform(df)
+
+# ### Simple Imputation
+
+df.loc[:10, ["petal_length", "type"]] = None
+df.loc[140:, ["petal_length", "type"]] = None
+
+SimpleImputation(
+    target="petal_length",
+    strategy="constant",
+    write_yaml=True,
+    constant=-999,
+    file_name="MissingReplacement",
+).fit_transform(df)
+
+SimpleImputation(
+    target="type",
+    strategy="most_frequent",
+    write_yaml=True,
+    file_name="MissingReplacement",
+).fit_transform(df)

@@ -1,5 +1,6 @@
-# ember files
-*.ember
+# playground files
+playground/*.ember
+playground/*yml
 
 # Catboost
 playground/catboost_info/*

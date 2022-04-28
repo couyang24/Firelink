@@ -3,6 +3,16 @@ import yaml
 
 from firelink.fire import Firstflame
 
+def _write_yaml(file_name, miss_dict):
+    try:
+        with open(f"{file_name}.yml", "r") as infile:
+            cur_yaml = yaml.safe_load(infile)
+            cur_yaml.update(miss_dict)
+        with open(f"{file_name}.yml", "w") as outfile:
+            yaml.safe_dump(cur_yaml, outfile, default_flow_style=False)
+    except FileNotFoundError:
+        with open(f"{file_name}.yml", "w") as outfile:
+            yaml.safe_dump(miss_dict, outfile, default_flow_style=False)
 
 class SimpleImputation(Firstflame):
     def __init__(
@@ -46,15 +56,7 @@ class SimpleImputation(Firstflame):
             "strategy": self.strategy,
         }
         if self.write_yaml:
-            try:
-                with open(f"{self.file_name}.yml", "r") as infile:
-                    cur_yaml = yaml.safe_load(infile)
-                    cur_yaml.update(miss_dict)
-                with open(f"{self.file_name}.yml", "w") as outfile:
-                    yaml.safe_dump(cur_yaml, outfile, default_flow_style=False)
-            except FileNotFoundError:
-                with open(f"{self.file_name}.yml", "w") as outfile:
-                    yaml.safe_dump(miss_dict, outfile, default_flow_style=False)
+            _write_yaml(self.file_name, miss_dict)
         return X
 
 
@@ -122,13 +124,5 @@ class DecisionImputation(Firstflame):
                 "model_type": self.mtype,
             }
         if self.write_yaml:
-            try:
-                with open(f"{self.file_name}.yml", "r") as infile:
-                    cur_yaml = yaml.safe_load(infile)
-                    cur_yaml.update(miss_dict)
-                with open(f"{self.file_name}.yml", "w") as outfile:
-                    yaml.safe_dump(cur_yaml, outfile, default_flow_style=False)
-            except FileNotFoundError:
-                with open(f"{self.file_name}.yml", "w") as outfile:
-                    yaml.safe_dump(miss_dict, outfile, default_flow_style=False)
+            _write_yaml(self.file_name, miss_dict)
         return X

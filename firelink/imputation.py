@@ -4,14 +4,18 @@ import yaml
 from firelink.fire import Firstflame
 
 def _write_yaml(file_name, miss_dict):
+    if file_name[-4:] != ".yml" and file_name[-5:] != ".yaml":
+        raise TypeError(
+            "Only file type .yml and .yaml are accepted."
+        )
     try:
-        with open(f"{file_name}.yml", "r") as infile:
+        with open(f"{file_name}", "r") as infile:
             cur_yaml = yaml.safe_load(infile)
             cur_yaml.update(miss_dict)
-        with open(f"{file_name}.yml", "w") as outfile:
+        with open(f"{file_name}", "w") as outfile:
             yaml.safe_dump(cur_yaml, outfile, default_flow_style=False)
     except FileNotFoundError:
-        with open(f"{file_name}.yml", "w") as outfile:
+        with open(f"{file_name}", "w") as outfile:
             yaml.safe_dump(miss_dict, outfile, default_flow_style=False)
 
 class SimpleImputation(Firstflame):
@@ -21,7 +25,7 @@ class SimpleImputation(Firstflame):
         strategy="mean",
         constant=None,
         write_yaml=False,
-        file_name="MissingReplacement",
+        file_name="MissingReplacement.yml",
     ):
         self.target = target
         self.strategy = strategy
@@ -68,7 +72,7 @@ class DecisionImputation(Firstflame):
         mtype,
         plot=False,
         write_yaml=False,
-        file_name="MissingReplacement",
+        file_name="MissingReplacement.yml",
     ):
         self.target = target
         self.features = features

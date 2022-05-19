@@ -1,4 +1,5 @@
 import pickle
+import yaml
 
 from sklearn.pipeline import Pipeline
 
@@ -14,6 +15,23 @@ class FirePipeline(Pipeline):
         """load pickled file"""
         with open(file, "rb") as obj:
             return pickle.load(obj)
+
+    @classmethod
+    def link_yaml(cls, file):
+        """load yaml file"""
+        with open(file,'rb') as yml:
+            cur_yaml = yaml.safe_load(yml)
+        pipe_lst = []
+        for key in cur_yaml.keys():
+            method = eval(key.split('_')[0])
+            config = cur_yaml[key]
+            pipe_lst += [
+                (
+                    key,
+                    method(config['condition'], config['target'], config['value'])
+                )
+            ]
+        return FirePipeline(pipe_lst)
 
     def save_fire(self, file, file_type="ember"):
         if file_type == "ember":

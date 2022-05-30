@@ -24,8 +24,6 @@
 # ## Load Packages
 
 
-import firelink
-
 # import catboost as cgb
 import lightgbm as lgb
 
@@ -35,9 +33,6 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import xgboost as xgb
-from firelink.fire import Firstflame
-from firelink.pandas_transform import DropDuplicates, Filter
-from firelink.pipeline import FirePipeline
 from pandas.testing import assert_frame_equal
 from sklearn import datasets, set_config
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -59,6 +54,11 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
+
+import firelink
+from firelink.fire import Firstflame
+from firelink.pandas_transform import DropDuplicates, Filter
+from firelink.pipeline import FirePipeline
 
 # %load_ext autoreload
 # %autoreload 2
@@ -275,10 +275,11 @@ print(np.mean(cross_val_score(clf, X, y, scoring="roc_auc", cv=cv)))
 
 # ## Spark Transformation
 
-from firelink.pandas_transform import Assign
-from firelink.spark_transform import WithColumn
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
+
+from firelink.pandas_transform import Assign
+from firelink.spark_transform import WithColumn
 
 spark = SparkSession.builder.appName("spark_session").enableHiveSupport().getOrCreate()
 

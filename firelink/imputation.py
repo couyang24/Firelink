@@ -1,13 +1,12 @@
-from sklearn import tree
 import yaml
+from sklearn import tree
 
 from firelink.fire import Firstflame
 
+
 def _write_yaml(file_name, miss_dict):
     if file_name[-4:] != ".yml" and file_name[-5:] != ".yaml":
-        raise TypeError(
-            "Only file type .yml and .yaml are accepted."
-        )
+        raise TypeError("Only file type .yml and .yaml are accepted.")
     try:
         with open(f"{file_name}", "r") as infile:
             cur_yaml = yaml.safe_load(infile)
@@ -17,6 +16,7 @@ def _write_yaml(file_name, miss_dict):
     except FileNotFoundError:
         with open(f"{file_name}", "w") as outfile:
             yaml.safe_dump(miss_dict, outfile, default_flow_style=False)
+
 
 class SimpleImputation(Firstflame):
     def __init__(

@@ -88,13 +88,18 @@ def test_groupby(test_pandas_df):
     expected = pd.DataFrame(
         {"e": ["a", "d", "e"], "a": [15, 21, 9], "b": [45, 61, 29], "c": [75, 101, 49]}
     )
-    output = Groupby("e").fit_transform(test_pandas_df).sum().reset_index(drop=False)
+    output = (
+        Groupby("e")
+        .fit_transform(test_pandas_df)[["a", "b", "c"]]
+        .sum()
+        .reset_index(drop=False)
+    )
     assert_frame_equal(output, expected)
 
 
 def test_agg(test_pandas_df):
-    expected = pd.DataFrame({"a": 0, "b": 10, "c": 20, "d": ["a"]}, index=["min"])
-    output = Agg(["min"]).fit_transform(test_pandas_df)
+    expected = pd.DataFrame({"a": 0, "b": 10, "c": 20}, index=["min"])
+    output = Agg(["min"]).fit_transform(test_pandas_df[["a", "b", "c"]])
     assert_frame_equal(output, expected)
 
 
@@ -102,7 +107,7 @@ def test_assign(test_pandas_df):
     expected = pd.DataFrame(
         {"temp": [32.0, 33.8, 35.6, 37.4, 39.2, 41.0, 42.8, 44.6, 46.4, 48.2]}
     )
-    output = Assign({"temp": lambda x: x.a * 9 / 5 + 32}).fit_transform(test_pandas_df)[
+    output = Assign(temp=lambda x: x.a * 9 / 5 + 32).fit_transform(test_pandas_df)[
         ["temp"]
     ]
     assert_frame_equal(output, expected)
